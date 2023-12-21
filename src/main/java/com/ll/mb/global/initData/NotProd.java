@@ -3,6 +3,7 @@ package com.ll.mb.global.initData;
 import com.ll.mb.domain.book.book.entity.Book;
 import com.ll.mb.domain.book.book.service.BookService;
 import com.ll.mb.domain.cash.cash.entity.CashLog;
+import com.ll.mb.domain.global.exceptions.GlobalException;
 import com.ll.mb.domain.member.member.entity.Member;
 import com.ll.mb.domain.member.member.service.MemberService;
 import com.ll.mb.domain.product.cart.service.CartService;
@@ -35,6 +36,7 @@ public class NotProd {
     ApplicationRunner initNotProd() {
         return args -> {
             self.work1();
+            self.work2();
         };
     }
 
@@ -84,5 +86,16 @@ public class NotProd {
         Order order2 = orderService.createFromCart(memberUser3);
         orderService.payByCashOnly(order2);
         orderService.refund(order2);
+    }
+
+    private void work2() {
+//        Member memberUser1 = memberService.findByUsername("user1").get();
+//        Product product1 = productService.findById(1L).get();
+//
+//        try {
+//            cartService.addItem(memberUser1,product1);
+//        }catch (GlobalException e){
+//            System.out.println(e.getMessage());
+//        }
     }
 }
