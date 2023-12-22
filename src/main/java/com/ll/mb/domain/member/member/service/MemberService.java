@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.color.ICC_Profile;
 import java.util.Optional;
 
 @Service
@@ -60,6 +59,16 @@ public class MemberService {
 
         if (opMember.isPresent()) return RsData.of("200", "이미 존재합니다.", opMember.get());
 
+        String filePath = Ut.str.hasLength(profileImgUrl) ? Ut.file.downloadFileByHttp(profileImgUrl, AppConfig.getTempDirPath()) : "";
+
         return join(username, "", nickname);
+    }
+
+    public static boolean hasLength(String string) {
+        return string != null && !string.trim().isEmpty();
+    }
+
+    public static boolean isBlank(String string) {
+        return !hasLength(string);
     }
 }
