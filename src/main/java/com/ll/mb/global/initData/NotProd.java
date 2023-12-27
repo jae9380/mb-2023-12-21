@@ -3,7 +3,6 @@ package com.ll.mb.global.initData;
 import com.ll.mb.domain.book.book.entity.Book;
 import com.ll.mb.domain.book.book.service.BookService;
 import com.ll.mb.domain.cash.cash.entity.CashLog;
-import com.ll.mb.domain.global.exceptions.GlobalException;
 import com.ll.mb.domain.member.member.entity.Member;
 import com.ll.mb.domain.member.member.service.MemberService;
 import com.ll.mb.domain.product.cart.service.CartService;
@@ -49,6 +48,7 @@ public class NotProd {
         Member memberUser1 = memberService.join("user1", "1234","유저1").getData();
         Member memberUser2 = memberService.join("user2", "1234","유저2").getData();
         Member memberUser3 = memberService.join("user3", "1234","유저3").getData();
+        Member memberUser4 = memberService.join("user4", "1234","유저4").getData();
 
         Book book1 = bookService.createBook(memberUser1, "책 제목 1", "책 내용 1", 10_000);
         Book book2 = bookService.createBook(memberUser2, "책 제목 2", "책 내용 2", 10_000);
@@ -94,6 +94,14 @@ public class NotProd {
         orderService.checkCanPay(order3,85_000);
 
         orderService.payByTossPayments(order3, 55_000);
+
+        memberService.addCash(memberUser2, 50_000, CashLog.EvenType.충전__무통장입금, memberUser4);
+
+        cartService.addItem(memberUser4, product1);
+        cartService.addItem(memberUser4, product2);
+        cartService.addItem(memberUser4, product3);
+
+        Order order4 = orderService.createFromCart(memberUser4);
     }
 
 
