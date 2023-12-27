@@ -58,5 +58,5 @@ custom:
     baseUrl: "http://localhost:${server.port}"
   tossPayments:
     widget:
-      clientKey: test_ck_BE92LAa5PVbDMxDgLzB87YmpXyJj
+      clientKey: test_ck_oEjb0gm23P5jleRXv5QnVpGwBJn5
       secretKey: ON_SECRET
